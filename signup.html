@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,53 +47,4 @@
   </script>
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signup - Expense Tracker</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <nav class="navbar">
-    <div class="logo">Expense Tracker</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="signup.html" class="active">Signup</a></li>
-      <li><a href="about.html">About Us</a></li>
-    </ul>
-  </nav>
 
-  <main class="main-content full-height">
-    <form onsubmit="handleSignup(event)" class="glass signup-form">
-      <h1>Create an Account</h1>
-      
-      <input type="text" id="name" placeholder="Enter your name" required>
-
-      <input type="tel" id="mobile" placeholder="Enter your mobile number" pattern="[0-9]{10}" required>
-
-      <input type="password" id="password" placeholder="Enter your password" required>
-
-      <button type="submit">Signup</button>
-    </form>
-  </main>
-
-  <script>
-    function handleSignup(event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value;
-      const mobile = document.getElementById('mobile').value;
-      const password = document.getElementById('password').value;
-
-      localStorage.setItem('name', name);
-      localStorage.setItem('mobile', mobile);
-      
-      alert('Signup successful!');
-      window.location.href = "index.html";
-    }
-  </script>
-</body>
-</html>
->>>>>>> 168a1f156e4ac1d135eb9fa9f25559a365304c42
