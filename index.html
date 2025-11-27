@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,3 +61,67 @@
   <script src="app.js"></script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExpenseFlow - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Expense Flow</div>
+    <ul class="nav-links">
+      <li><a href="index.html">HomePage</a></li>
+      <li><a href="signup.html">Signup</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <h1 id="greeting">Hello, Guest!</h1>
+
+    <section class="balance-card glass">
+      <h2>My Balance</h2>
+      <p id="balance">$0</p>
+      <input type="number" id="add-balance-input" placeholder="Enter amount">
+      <button onclick="addBalance()">Add Balance</button>
+    </section>
+
+    <section class="expense-categories">
+        <div class="category-card glass" id="food">
+          <h3>Food & Drink</h3>
+          <div class="input-group">
+            <input type="number" id="food-expense-input" placeholder="Enter amount">
+            <input type="text" id="food-expense-desc" placeholder="Enter description">
+          </div>
+          <button onclick="addExpense('Food')">Add</button>
+        </div>
+      
+        <div class="category-card glass" id="other">
+          <h3>Other Expenses</h3>
+          <div class="input-group">
+            <input type="number" id="other-expense-input" placeholder="Enter amount">
+            <input type="text" id="other-expense-desc" placeholder="Enter description">
+          </div>
+          <button onclick="addExpense('Other')">Add</button>
+        </div>
+      </section>
+      
+
+    <!-- ✨ ADD THIS SECTION BELOW to display expenses -->
+    <section class="expense-history glass">
+      <h2>Expense History</h2>
+      <ul id="expense-list">
+        <!-- Added expenses will show up here -->
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+>>>>>>> 168a1f156e4ac1d135eb9fa9f25559a365304c42
