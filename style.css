@@ -307,7 +307,7 @@
 
   .delete-expense {
   margin-left: 10px;
-  background: red;
+  background: rgb(0, 149, 255);
   color: white;
   border: none;
   padding: 3px 8px;
@@ -317,5 +317,5 @@
 }
 
 .delete-expense:hover {
-  background: darkred;
+  background: rgb(48, 76, 132);
 }
