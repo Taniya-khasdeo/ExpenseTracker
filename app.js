@@ -16,15 +16,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
     const expenseList = document.getElementById('expense-list');
 
-    savedExpenses.forEach(text => {
-        const li = document.createElement('li');
-        li.textContent = text;
+    savedExpenses.forEach(item => {
+        const li = createExpenseItem(item.text, item.id);
         expenseList.appendChild(li);
     });
 });
 
 let balance = 0;
 
+// Function to create LI with delete button
+function createExpenseItem(text, id) {
+    const li = document.createElement('li');
+    li.textContent = text;
+    li.setAttribute("data-id", id);
+
+    // Create delete button
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "✖";
+    delBtn.classList.add("delete-expense");
+
+    // Delete action
+    delBtn.onclick = () => {
+        li.remove();
+        deleteExpenseFromStorage(id);
+    };
+
+    li.appendChild(delBtn);
+    return li;
+}
+
+// Save updated expenses after delete
+function deleteExpenseFromStorage(id) {
+    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    expenses = expenses.filter(e => e.id !== id);
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+}
+
+// Add Balance
 function addBalance() {
   const input = document.getElementById('add-balance-input');
   const amount = parseFloat(input.value);
@@ -42,6 +70,7 @@ function addBalance() {
   }
 }
 
+// Add Expense
 function addExpense(type) {
   let amountInput, descInput;
 
@@ -63,18 +92,18 @@ function addExpense(type) {
     document.getElementById('balance').textContent = `₹${balance.toFixed(2)}`;
     localStorage.setItem('balance', balance); // Save updated balance
 
-    // Add to Expense History
-    const expenseList = document.getElementById('expense-list');
-    const listItem = document.createElement('li');
-    listItem.textContent = `${type} - ${description}: -₹${amount.toFixed(2)}`;
-    expenseList.appendChild(listItem);
+    // Expense Text
+    const text = `${type} - ${description}: -₹${amount.toFixed(2)}`;
+    const id = Date.now(); // Unique ID
 
-    // Save all expenses to localStorage
-    const allItems = [];
-    document.querySelectorAll('#expense-list li').forEach(li => {
-      allItems.push(li.textContent);
-    });
-    localStorage.setItem('expenses', JSON.stringify(allItems));
+    // Add to UI
+    const listItem = createExpenseItem(text, id);
+    document.getElementById('expense-list').appendChild(listItem);
+
+    // Save to localStorage
+    let stored = JSON.parse(localStorage.getItem("expenses")) || [];
+    stored.push({ text, id });
+    localStorage.setItem("expenses", JSON.stringify(stored));
 
     amountInput.value = '';
     descInput.value = '';

@@ -304,3 +304,18 @@
       flex-direction: column;
     }
   }
+
+  .delete-expense {
+  margin-left: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 3px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.delete-expense:hover {
+  background: darkred;
+}
