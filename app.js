@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedBalance = localStorage.getItem('balance');
     if (savedBalance !== null) {
         balance = parseFloat(savedBalance);
-        document.getElementById('balance').textContent = `$${balance.toFixed(2)}`;
+        document.getElementById('balance').textContent = `₹${balance.toFixed(2)}`;
     }
 
     // Load saved expenses
@@ -31,7 +31,7 @@ function addBalance() {
 
   if (!isNaN(amount) && amount > 0) {
     balance += amount;
-    document.getElementById('balance').textContent = `$${balance.toFixed(2)}`;
+    document.getElementById('balance').textContent = `₹${balance.toFixed(2)}`;
 
     // Save balance
     localStorage.setItem('balance', balance);
@@ -60,13 +60,13 @@ function addExpense(type) {
     balance -= amount;
     if (balance < 0) balance = 0;
 
-    document.getElementById('balance').textContent = `$${balance.toFixed(2)}`;
+    document.getElementById('balance').textContent = `₹${balance.toFixed(2)}`;
     localStorage.setItem('balance', balance); // Save updated balance
 
     // Add to Expense History
     const expenseList = document.getElementById('expense-list');
     const listItem = document.createElement('li');
-    listItem.textContent = `${type} - ${description}: -$${amount.toFixed(2)}`;
+    listItem.textContent = `${type} - ${description}: -₹${amount.toFixed(2)}`;
     expenseList.appendChild(listItem);
 
     // Save all expenses to localStorage
