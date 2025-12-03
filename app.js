@@ -111,3 +111,74 @@ function addExpense(type) {
     alert('Please enter a valid positive number and description.');
   }
 }
+// DOWNLOAD PDF FEATURE
+document.getElementById("downloadPdf").addEventListener("click", generatePDF);
+
+function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Fetch Data
+    const balance = localStorage.getItem("balance") || 0;
+    const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+    // Categorize
+    let food = [];
+    let other = [];
+
+    expenses.forEach(exp => {
+        if (exp.text.startsWith("Food")) {
+            food.push(exp);
+        } else if (exp.text.startsWith("Other")) {
+            other.push(exp);
+        }
+    });
+
+    let yPos = 15;
+
+    // Title
+    doc.setFontSize(18);
+    doc.text("ExpenseFlow - Expense Report", 14, yPos);
+    yPos += 10;
+
+    // Date
+    doc.setFontSize(12);
+    doc.text("Generated on: " + new Date().toLocaleString(), 14, yPos);
+    yPos += 10;
+
+    // Balance
+    doc.text("Current Balance: ₹" + balance, 14, yPos);
+    yPos += 15;
+
+    // FOOD SECTION
+    if (food.length > 0) {
+        doc.setFontSize(14);
+        doc.text("Food & Drink Expenses", 14, yPos);
+        yPos += 5;
+
+        doc.autoTable({
+            startY: yPos,
+            head: [["Expense", "ID"]],
+            body: food.map(e => [e.text, e.id])
+        });
+
+        yPos = doc.previousAutoTable.finalY + 10;
+    }
+
+    // OTHER SECTION
+    if (other.length > 0) {
+        doc.setFontSize(14);
+        doc.text("Other Expenses", 14, yPos);
+        yPos += 5;
+
+        doc.autoTable({
+            startY: yPos,
+            head: [["Expense", "ID"]],
+            body: other.map(e => [e.text, e.id])
+        });
+
+        yPos = doc.previousAutoTable.finalY + 10;
+    }
+
+    doc.save("ExpenseFlow_Report.pdf");
+}
