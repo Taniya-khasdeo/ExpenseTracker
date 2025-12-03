@@ -111,12 +111,8 @@ function addExpense(type) {
     alert('Please enter a valid positive number and description.');
   }
 }
-// DOWNLOAD PDF FEATURE
-document.getElementById("downloadPdf").addEventListener("click", generatePDF);
-
 function generatePDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new window.jspdf.jsPDF();
 
     // Fetch Data
     const balance = localStorage.getItem("balance") || 0;
