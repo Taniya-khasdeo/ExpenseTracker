@@ -46,22 +46,23 @@
         </div>
       </section>
       
-
-    <!-- ✨ ADD THIS SECTION BELOW to display expenses -->
     <section class="expense-history glass">
       <h2>Expense History</h2>
       <ul id="expense-list">
         <!-- Added expenses will show up here -->
       </ul>
     </section>
-    <!-- Download PDF Section -->
+
     <section class="download-section glass">
       <button id="downloadPdf">Download PDF Report</button>
     </section>
-
   </main>
 
+  <!-- ✅ Include jsPDF and autoTable before your app.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
+
 

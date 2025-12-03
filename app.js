@@ -118,25 +118,20 @@ function addExpense(type) {
   }
 }
 
-// Generate PDF
 function generatePDF() {
-    // ✅ Use window.jspdf.jsPDF
-    const doc = new window.jspdf.jsPDF();
+    // ✅ Use jsPDF from UMD build
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-    // Fetch Data
     const balance = localStorage.getItem("balance") || 0;
     const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-    // Categorize
     let food = [];
     let other = [];
 
     expenses.forEach(exp => {
-        if (exp.text.startsWith("Food")) {
-            food.push(exp);
-        } else if (exp.text.startsWith("Other")) {
-            other.push(exp);
-        }
+        if (exp.text.startsWith("Food")) food.push(exp);
+        else if (exp.text.startsWith("Other")) other.push(exp);
     });
 
     let yPos = 15;
@@ -185,6 +180,5 @@ function generatePDF() {
         yPos = doc.previousAutoTable.finalY + 10;
     }
 
-    // Save PDF
     doc.save("ExpenseFlow_Report.pdf");
 }
