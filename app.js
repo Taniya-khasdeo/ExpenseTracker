@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = createExpenseItem(item.text, item.id);
         expenseList.appendChild(li);
     });
+
+    // ✅ Attach PDF button listener
+    const pdfBtn = document.getElementById("downloadPdf");
+    if (pdfBtn) {
+        pdfBtn.addEventListener("click", generatePDF);
+    }
 });
 
 let balance = 0;
@@ -111,7 +117,10 @@ function addExpense(type) {
     alert('Please enter a valid positive number and description.');
   }
 }
+
+// Generate PDF
 function generatePDF() {
+    // ✅ Use window.jspdf.jsPDF
     const doc = new window.jspdf.jsPDF();
 
     // Fetch Data
@@ -176,5 +185,6 @@ function generatePDF() {
         yPos = doc.previousAutoTable.finalY + 10;
     }
 
+    // Save PDF
     doc.save("ExpenseFlow_Report.pdf");
 }
